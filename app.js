@@ -2,11 +2,6 @@
 // Create a library variable that holds books
 // Write a function that create a book and add it to the library variable
 
-// Write a function that loops through the library to display books on a table in html
-
-// Create an "New book" button that allows the user to add a book through a form that has: 
-// a book name section, author, number of pages, read status
-
 function Book(title, author, numOfPages, readStatus) {
     this.title = title;
     this.author = author;
@@ -27,10 +22,33 @@ function addBookToLibrary(title, author, numOfPages, readStatus) {
     library.push(book);
 }
 
+// Make a function that loops through the library array, then display the books
+
+const addBookButton = document.querySelector('#add-book');
+const bookContainer = document.querySelector('main');
+
+function displayBooks() {
+    library.forEach(function(item) {
+        console.log(item.info());
+    })
+}
+
+function createBookContainer() {
+    const book = document.createElement('div');
+    book.classList.add('book');
+    book.innerHTML = 
+    `
+        <h2>Title of book</h2>
+        <p>Author: <span></span></p>
+        <p>Number of pages: <span></span></p>
+        <p>Read status: <span></span></p>
+        <button class="remove-book">Remove</button>
+    `;
+    bookContainer.appendChild(book);
+}
+
 addBookToLibrary("Cho Tôi Xin Một Vé Đi Tuổi Thơ", "Nguyễn Nhật Ánh", 208, true);
 addBookToLibrary("Mắt Biếc", "Nguyễn Nhật Ánh", 320, false);
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("Atomic Habits", "James Clear", 320, true);
 addBookToLibrary("Dune", "Frank Herbert", 688, false);
-
-console.log(library);
