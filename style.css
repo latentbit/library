@@ -5,5 +5,44 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     font-family: 'Nunito', Verdana, Geneva, Tahoma, sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+header {
+    background-color: rgb(170, 178, 255);
+    height: clamp(140px, 15vh, 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.2rem, 5vw, 1.7rem);
+}
+
+h1 {
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgb(39, 0, 59);
+}
+
+h1::before, h1::after {
+    content: " ~ ";
+    color: rgb(103, 0, 154);
+}
+
+main {
+    flex: 1;
+    background-color: rgb(221, 227, 255);
+    display: grid;
+    gap: min(30px, 4vw);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    padding: 70px clamp(20px, 10vw, 300px);
+}
+
+.book {
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    min-height: 320px;
 }
