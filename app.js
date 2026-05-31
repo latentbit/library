@@ -17,6 +17,7 @@ function Book(title, author, numOfPages, readStatus) {
     this.author = author;
     this.numberOfPages = numOfPages;
     this.readStatus = readStatus;
+    this.id = crypto.randomUUID();
 }
 
 Book.prototype.info = function() {
