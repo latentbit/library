@@ -21,6 +21,13 @@ function Book(title, author, numOfPages, readStatus) {
 }
 
 Book.prototype.info = function() {
-    const status = (this.readStatus) ? 'have already read' : 'have not read';
+    const status = (this.readStatus) ? 'read' : 'not read';
     return `"${this.title}" by ${this.author}, ${this.numberOfPages} pages, ${status}.`;
+}
+
+let library = [];
+
+function addBookToLibrary(title, author, numOfPages, readStatus) {
+    const book = new Book(title, author, numOfPages, readStatus);
+    library.push(book);
 }
