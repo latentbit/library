@@ -25,17 +25,19 @@ function addBookToLibrary(title, author, numOfPages, readStatus) {
 // Make a function that loops through the library array, then display the books
 
 const addBookButton = document.querySelector('#add-book');
-const bookContainer = document.querySelector('main');
+const booksContainer = document.querySelector('main');
 
 function displayBooks() {
     library.forEach(function(item) {
-        console.log(item.info());
+        createBookContainer();
+        addBookInformationToContainer(item);
     })
 }
 
 function createBookContainer() {
     const book = document.createElement('div');
     book.classList.add('book');
+    book.classList.add('generated');
     book.innerHTML = 
     `
         <h2>Title of book</h2>
@@ -44,11 +46,22 @@ function createBookContainer() {
         <p>Read status: <span></span></p>
         <button class="remove-book">Remove</button>
     `;
-    bookContainer.appendChild(book);
+    booksContainer.appendChild(book);
 }
 
-addBookToLibrary("Cho Tôi Xin Một Vé Đi Tuổi Thơ", "Nguyễn Nhật Ánh", 208, true);
-addBookToLibrary("Mắt Biếc", "Nguyễn Nhật Ánh", 320, false);
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("Atomic Habits", "James Clear", 320, true);
-addBookToLibrary("Dune", "Frank Herbert", 688, false);
+function addBookInformationToContainer(item) {
+    const readStatus = (item.readStatus) ? 'read' : 'not read';
+    const bookNode = booksContainer.lastElementChild;
+    bookNode.querySelector('h2').textContent = item.title;
+    bookNode.querySelector('p:first-of-type').querySelector('span').textContent = item.author;
+    bookNode.querySelector('p:nth-of-type(2)').querySelector('span').textContent = item.numberOfPages;
+    bookNode.querySelector('p:nth-of-type(3)').querySelector('span').textContent = readStatus;
+}
+
+addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, true);
+addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, true);
+addBookToLibrary("Nhà Giả Kim", "Paulo Coelho", 208, false);
+addBookToLibrary("Dế Mèn Phiêu Lưu Ký", "Tô Hoài", 160, true);
+addBookToLibrary("Sherlock Holmes", "Arthur Conan Doyle", 307, false);
+
+displayBooks();
