@@ -37,7 +37,7 @@ function displayBooks() {
 function createBookContainer() {
     const book = document.createElement('div');
     book.classList.add('book');
-    book.classList.add('generated');
+    book.classList.add('generated-book-container');
     book.innerHTML = 
     `
         <h2>Title of book</h2>
@@ -56,12 +56,18 @@ function addBookInformationToContainer(item) {
     bookNode.querySelector('p:first-of-type').querySelector('span').textContent = item.author;
     bookNode.querySelector('p:nth-of-type(2)').querySelector('span').textContent = item.numberOfPages;
     bookNode.querySelector('p:nth-of-type(3)').querySelector('span').textContent = readStatus;
+    bookNode.classList.add(`${item.id}`);
 }
+
+booksContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-book')) {
+        const bookToBeDeleted = e.target.parentElement;
+        const DOMBooksArray = booksContainer.querySelectorAll('.generated-book-container');
+        console.log(bookToBeDeleted);
+    }
+})
 
 addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, true);
 addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, true);
-addBookToLibrary("Nhà Giả Kim", "Paulo Coelho", 208, false);
-addBookToLibrary("Dế Mèn Phiêu Lưu Ký", "Tô Hoài", 160, true);
-addBookToLibrary("Sherlock Holmes", "Arthur Conan Doyle", 307, false);
 
 displayBooks();
