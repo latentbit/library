@@ -59,14 +59,22 @@ function addBookInformationToContainer(item) {
     bookNode.classList.add(`${item.id}`);
 }
 
+//bookNode.classList[2] is the index of the book's id
+
 booksContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-book')) {
         const bookToBeDeleted = e.target.parentElement;
-        const DOMBooksArray = booksContainer.querySelectorAll('.generated-book-container');
-        console.log(bookToBeDeleted);
+        const indexOfbookToBeDeleted = library.findIndex( item => {
+            item.id === bookToBeDeleted.classList[2];
+        })
+
+        library.splice(indexOfbookToBeDeleted, 1);
+        booksContainer.removeChild(bookToBeDeleted);
     }
 })
 
+addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, true);
+addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, true);
 addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, true);
 addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, true);
 
