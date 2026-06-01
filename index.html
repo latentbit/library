@@ -16,7 +16,52 @@
     </header>
 
     <main>
-        <button id="add-book" aria-label="Add book">+</button>
+        <button id="add-book" 
+            command="show-modal"
+            commandfor="book-dialog" 
+            aria-label="Add book">
+            +
+        </button>
+
     </main>
+
+    <dialog id="book-dialog" closedby="any" open>
+        <button id="close-modal"
+                command="close"
+                commandfor="book-dialog">
+            Close
+        </button>
+        <form action="">
+            <h2>Create new book:</h2>
+            <p>
+                <label for="title">Title: </label>
+                <input type="text"
+                        name="title" 
+                        id="title"
+                        required>
+            </p>
+            <p>
+                <label for="author">Author: </label>
+                <input type="text" 
+                        name="author" 
+                        id="author"
+                        required>
+            </p>
+            <p>
+                <label for="number-of-pages">Number of pages: </label>
+                <input type="number" 
+                        name="number-of-pages" 
+                        min="1"
+                        id="number-of-pages">
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="read-status">
+                    Have you read the book before?
+                </label>
+            </p>
+            <button type="submit">Submit</button>
+        </form>
+    </dialog>
 </body>
 </html>
