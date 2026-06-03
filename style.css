@@ -132,6 +132,10 @@ dialog {
         border-radius: 4px;
     }
 
+    input[type="checkbox"] {
+        accent-color: rgb(123, 65, 178);
+    }
+
     button:hover {
         box-shadow: 0 0 8px rgb(202, 202, 202);
     }
