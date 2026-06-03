@@ -64,9 +64,9 @@ function addBookInformationToContainer(bookObject) {
 booksContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-book')) {
         const bookToBeDeleted = e.target.parentElement;
-        const indexOfbookToBeDeleted = library.findIndex( item => {
-            item.id === bookToBeDeleted.classList[2];
-        })
+        const indexOfbookToBeDeleted = library.findIndex( item => 
+            item.id === bookToBeDeleted.classList[2]
+        );
 
         library.splice(indexOfbookToBeDeleted, 1);
         booksContainer.removeChild(bookToBeDeleted);
