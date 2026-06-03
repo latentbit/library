@@ -49,14 +49,14 @@ function createBookContainer() {
     booksContainer.appendChild(book);
 }
 
-function addBookInformationToContainer(item) {
-    const readStatus = (item.readStatus) ? 'read' : 'not read';
+function addBookInformationToContainer(bookObject) {
+    const readStatus = (bookObject.readStatus) ? 'read' : 'not read';
     const bookNode = booksContainer.lastElementChild;
-    bookNode.querySelector('h2').textContent = item.title;
-    bookNode.querySelector('p:first-of-type').querySelector('span').textContent = item.author;
-    bookNode.querySelector('p:nth-of-type(2)').querySelector('span').textContent = item.numberOfPages;
+    bookNode.querySelector('h2').textContent = bookObject.title;
+    bookNode.querySelector('p:first-of-type').querySelector('span').textContent = bookObject.author;
+    bookNode.querySelector('p:nth-of-type(2)').querySelector('span').textContent = bookObject.numberOfPages;
     bookNode.querySelector('p:nth-of-type(3)').querySelector('span').textContent = readStatus;
-    bookNode.classList.add(`${item.id}`);
+    bookNode.classList.add(`${bookObject.id}`);
 }
 
 //bookNode.classList[2] is the index of the book's id
@@ -73,9 +73,41 @@ booksContainer.addEventListener('click', (e) => {
     }
 })
 
-addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, true);
-addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, true);
-addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, true);
-addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, true);
+// Create a book when users submit their form
+
+const bookForm = document.querySelector('#book-dialog > form')
+
+function resetForm(title, author, numberOfPages, readStatus, modal) {
+    title.value = '';
+    author.value = '';
+    numberOfPages.value = '';
+    readStatus.checked = false;
+    modal.close();
+}
+
+function createCustomBookContainer() {
+    event.preventDefault();
+    const bookModal = bookForm.parentElement;
+    const bookTitle = bookForm.querySelector('#title');
+    const bookAuthor = bookForm.querySelector('#author');
+    const bookNumberOfPages = bookForm.querySelector('#number-of-pages');
+    const bookReadStatus = bookForm.querySelector('input[type="checkbox"]');
+    const bookInformation = {
+        author: bookAuthor.value,
+        title: bookTitle.value,
+        numberOfPages: bookNumberOfPages.value,
+        readStatus: bookReadStatus.checked,
+    }
+
+    createBookContainer();
+    library.push(bookInformation);
+    addBookInformationToContainer(bookInformation);
+    resetForm(bookTitle, bookAuthor, bookNumberOfPages, bookReadStatus, bookModal);
+}
+
+bookForm.addEventListener('submit', createCustomBookContainer);
+
+addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, false);
+addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, false);
 
 displayBooks();
