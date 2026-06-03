@@ -92,12 +92,12 @@ function createCustomBookContainer() {
     const bookAuthor = bookForm.querySelector('#author');
     const bookNumberOfPages = bookForm.querySelector('#number-of-pages');
     const bookReadStatus = bookForm.querySelector('input[type="checkbox"]');
-    const bookInformation = {
-        author: bookAuthor.value,
-        title: bookTitle.value,
-        numberOfPages: bookNumberOfPages.value,
-        readStatus: bookReadStatus.checked,
-    }
+    const bookInformation = new Book(
+        bookTitle.value,
+        bookAuthor.value,
+        bookNumberOfPages.value,
+        bookReadStatus.checked,
+    )
 
     createBookContainer();
     library.push(bookInformation);
@@ -107,7 +107,10 @@ function createCustomBookContainer() {
 
 bookForm.addEventListener('submit', createCustomBookContainer);
 
-addBookToLibrary("Tôi Thấy Hoa Vàng Trên Cỏ Xanh", "Nguyễn Nhật Ánh", 378, false);
-addBookToLibrary("Đắc Nhân Tâm", "Dale Carnegie", 320, false);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
+addBookToLibrary("Treasure Island", "Robert Louis Stevenson", 240, false);
+addBookToLibrary("The Martian", "Andy Weir", 369, true);
+addBookToLibrary("Journey to the Center of the Earth", "Jules Verne", 183, false);
+addBookToLibrary("Around the World in Eighty Days", "Jules Verne", 192, true);
 
 displayBooks();
