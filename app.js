@@ -2,17 +2,19 @@
 // Create a library variable that holds books
 // Write a function that create a book and add it to the library variable
 
-function Book(title, author, numOfPages, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.numberOfPages = numOfPages;
-    this.readStatus = readStatus;
-    this.id = crypto.randomUUID();
-}
+class Book {
+    constructor(title, author, numOfPages, readStatus) {
+        this.title = title;
+        this.author = author;
+        this.numberOfPages = numOfPages;
+        this.readStatus = readStatus;
+        this.id = crypto.randomUUID();
+    }
 
-Book.prototype.info = function() {
-    const status = (this.readStatus) ? 'read' : 'not read';
-    return `"${this.title}" by ${this.author}, ${this.numberOfPages} pages, ${status}.`;
+    info() {
+        const status = (this.readStatus) ? 'read' : 'not read';
+        return `"${this.title}" by ${this.author}, ${this.numberOfPages} pages, ${status}.`;
+    }
 }
 
 let library = [];
